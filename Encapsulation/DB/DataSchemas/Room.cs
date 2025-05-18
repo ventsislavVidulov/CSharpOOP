@@ -34,7 +34,7 @@
 
         public RoomStatus RoomStatus { get; set; }
 
-        public List<AvaiableAmenities> Amenities { get; set; }
+        public List<AvaiableAmenities> Amenities { get; set; } = new List<AvaiableAmenities>();
 
         public Room(int roomNumber, RoomType roomType)
         {

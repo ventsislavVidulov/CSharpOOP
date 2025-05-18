@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Encapsulation.DB.Data;
+using Encapsulation.DB.DataSchemas;
+
 
 namespace Encapsulation
 {
@@ -6,15 +8,16 @@ namespace Encapsulation
     {
         static void Main(string[] args)
         {
-            string relativePath = @"../../../../Encapsulation/DB/Data/Data.JSON";
-            var fs = new FileStream(relativePath, FileMode.Create, FileAccess.ReadWrite);
-
-            string jsonString = @"{
-             'user_FirstName':'Peter',
-            'user_LastName':'Paul'
-             }";
-
-            var json = JsonConvert.SerializeObject(jsonString);
+            RoomsManager roomManager = new RoomsManager();
+            roomManager.CreateDB();
+            roomManager.AddRoom(new Room(101, RoomType.Single));
+            roomManager.AddRoom(new Room(102, RoomType.Double));
+            Thread.Sleep(10);
+            List<Room> rooms = roomManager.GetAllRooms().Result;
+            foreach (var item in rooms)
+            {
+                Console.WriteLine(item.NumberOfOccupants);
+            }
         }
     }
 }

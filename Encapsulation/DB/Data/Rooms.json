@@ -1,0 +1,22 @@
+[
+  {
+    "RoomNumber": 101,
+    "RoomType": 0,
+    "NumberOfBeds": 1,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 100,
+    "CancellationFee": 20,
+    "RoomStatus": 0,
+    "Amenities": []
+  },
+  {
+    "RoomNumber": 102,
+    "RoomType": 1,
+    "NumberOfBeds": 2,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 150,
+    "CancellationFee": 30,
+    "RoomStatus": 0,
+    "Amenities": []
+  }
+]
