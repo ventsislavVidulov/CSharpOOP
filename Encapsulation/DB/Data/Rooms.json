@@ -18,5 +18,75 @@
     "CancellationFee": 30,
     "RoomStatus": 0,
     "Amenities": []
+  },
+  {
+    "RoomNumber": 103,
+    "RoomType": 2,
+    "NumberOfBeds": 3,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 200,
+    "CancellationFee": 40,
+    "RoomStatus": 0,
+    "Amenities": [
+      0
+    ]
+  },
+  {
+    "RoomNumber": 104,
+    "RoomType": 3,
+    "NumberOfBeds": 4,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 300,
+    "CancellationFee": 60,
+    "RoomStatus": 0,
+    "Amenities": [
+      1,
+      0
+    ]
+  },
+  {
+    "RoomNumber": 201,
+    "RoomType": 0,
+    "NumberOfBeds": 1,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 100,
+    "CancellationFee": 20,
+    "RoomStatus": 0,
+    "Amenities": []
+  },
+  {
+    "RoomNumber": 202,
+    "RoomType": 1,
+    "NumberOfBeds": 2,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 150,
+    "CancellationFee": 30,
+    "RoomStatus": 0,
+    "Amenities": []
+  },
+  {
+    "RoomNumber": 203,
+    "RoomType": 2,
+    "NumberOfBeds": 3,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 200,
+    "CancellationFee": 40,
+    "RoomStatus": 0,
+    "Amenities": [
+      0
+    ]
+  },
+  {
+    "RoomNumber": 204,
+    "RoomType": 3,
+    "NumberOfBeds": 4,
+    "NumberOfOccupants": 0,
+    "PricePerNight": 300,
+    "CancellationFee": 60,
+    "RoomStatus": 0,
+    "Amenities": [
+      1,
+      0
+    ]
   }
 ]

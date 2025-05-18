@@ -68,7 +68,7 @@
                 throw new ArgumentException("Invalid room type");
             }
             NumberOfOccupants = 0;
-            CancellationFee = PricePerNight * 0.2;
+            CancellationFee = PricePerNight * Configuration.DiscountPercent;
             RoomStatus = RoomStatus.Available;
         }
     }
