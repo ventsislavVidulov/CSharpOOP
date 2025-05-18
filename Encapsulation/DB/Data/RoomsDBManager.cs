@@ -3,11 +3,11 @@ using System.Text.Json;
 
 namespace Encapsulation.DB.Data
 {
-    internal class RoomsManager
+    internal  class RoomsDBManager
     {
         private string relativeDBPath = @"../../../../Encapsulation/DB/Data/Rooms.json";
-        private JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
-        public async void CreateDB()
+        private  JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+        public  async void CreateDB()
         {
             // Check if the file exists
             if (!File.Exists(relativeDBPath))
