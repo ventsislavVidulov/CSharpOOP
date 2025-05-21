@@ -20,6 +20,8 @@
         Booked,
         UnderMaintenance
     }
+
+
     internal class Room
     {
         public int RoomNumber { get; set; }
@@ -34,9 +36,9 @@
 
         public RoomStatus RoomStatus { get; set; }
 
-        public List<AvaiableAmenities> Amenities { get; set; } = new List<AvaiableAmenities>();
+        public List<AvaiableAmenities> Amenities { get; set; } = new();
 
-        public List<Tuple<DateTime, DateTime>> ReservedDates = new();
+        public List<ReservationInterval> ReserveationIntervals { get; set; } = new();
 
         public Room(int roomNumber, RoomType roomType)
         {

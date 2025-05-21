@@ -7,7 +7,24 @@
     "PricePerNight": 100,
     "CancellationFee": 20,
     "RoomStatus": 0,
-    "Amenities": []
+    "Amenities": [],
+    "ReserveationIntervals": [
+      {
+        "StartDate": "1111-01-01T00:00:00",
+        "EndDate": "1111-01-02T00:00:00",
+        "ReservedDays": 1
+      },
+      {
+        "StartDate": "1111-01-01T00:00:00",
+        "EndDate": "1111-01-02T00:00:00",
+        "ReservedDays": 1
+      },
+      {
+        "StartDate": "1111-01-01T00:00:00",
+        "EndDate": "1111-01-02T00:00:00",
+        "ReservedDays": 1
+      }
+    ]
   },
   {
     "RoomNumber": 102,
@@ -17,7 +34,8 @@
     "PricePerNight": 150,
     "CancellationFee": 30,
     "RoomStatus": 0,
-    "Amenities": []
+    "Amenities": [],
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 103,
@@ -29,7 +47,8 @@
     "RoomStatus": 0,
     "Amenities": [
       0
-    ]
+    ],
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 104,
@@ -42,7 +61,8 @@
     "Amenities": [
       1,
       0
-    ]
+    ],
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 201,
@@ -52,7 +72,8 @@
     "PricePerNight": 100,
     "CancellationFee": 20,
     "RoomStatus": 0,
-    "Amenities": []
+    "Amenities": [],
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 202,
@@ -62,7 +83,8 @@
     "PricePerNight": 150,
     "CancellationFee": 30,
     "RoomStatus": 0,
-    "Amenities": []
+    "Amenities": [],
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 203,
@@ -74,7 +96,8 @@
     "RoomStatus": 0,
     "Amenities": [
       0
-    ]
+    ],
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 204,
@@ -87,726 +110,7 @@
     "Amenities": [
       1,
       0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 101,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 102,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 103,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 104,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
-  },
-  {
-    "RoomNumber": 201,
-    "RoomType": 1,
-    "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 100,
-    "CancellationFee": 20,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 202,
-    "RoomType": 2,
-    "NumberOfBeds": 2,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 150,
-    "CancellationFee": 30,
-    "RoomStatus": 0,
-    "Amenities": []
-  },
-  {
-    "RoomNumber": 203,
-    "RoomType": 3,
-    "NumberOfBeds": 3,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 200,
-    "CancellationFee": 40,
-    "RoomStatus": 0,
-    "Amenities": [
-      0
-    ]
-  },
-  {
-    "RoomNumber": 204,
-    "RoomType": 4,
-    "NumberOfBeds": 4,
-    "NumberOfOccupants": 0,
-    "PricePerNight": 300,
-    "CancellationFee": 60,
-    "RoomStatus": 0,
-    "Amenities": [
-      1,
-      0
-    ]
+    ],
+    "ReserveationIntervals": []
   }
 ]

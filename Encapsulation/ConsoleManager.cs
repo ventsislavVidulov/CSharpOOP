@@ -85,10 +85,13 @@ namespace Encapsulation
 
         public static int NotLogetUser()
         {
+            int result;
+
             Console.WriteLine("No user logged in");
             Console.WriteLine("1 -> Create new user");
             Console.WriteLine("2 -> Log in");
-            return Int32.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(), out result);
+            return result;
         }
 
         public static int LoggedAdmin() 
@@ -115,13 +118,13 @@ namespace Encapsulation
             return Int32.Parse(Console.ReadLine());
         }
 
-        public static Tuple<DateTime, DateTime> ReservedDates()
+        public static ReservationInterval ReservedDates()
         {
             Console.WriteLine("Enter start date (yyyy-mm-dd)");
             DateTime startDate = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Enter end date (yyyy-mm-dd)");
             DateTime endDate = DateTime.Parse(Console.ReadLine());
-            return new Tuple<DateTime, DateTime>(startDate, endDate);
+            return new ReservationInterval(startDate, endDate);
         }
     }
 }

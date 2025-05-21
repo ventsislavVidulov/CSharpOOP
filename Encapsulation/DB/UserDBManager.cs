@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 using System.Text.Json;
 
 
-namespace Encapsulation.DB.Data
+namespace Encapsulation.DB
 {
     internal class UserDBManager
     {
