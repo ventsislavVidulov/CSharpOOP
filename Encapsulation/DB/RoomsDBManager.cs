@@ -25,7 +25,7 @@ namespace Encapsulation.DB
             }
         }
 
-        public async Task<List<Room>> GetAllRooms()
+        public async Task<List<Room>?> GetAllRooms()
         {
             if (rooms == null)
             {

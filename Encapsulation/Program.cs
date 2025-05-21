@@ -12,7 +12,7 @@ namespace Encapsulation
             await Task.Run(roomsDBManager.CreateDB);
             RoomController roomController = new RoomController(roomsDBManager);
             UserDBManager userDBManager = new UserDBManager();
-            List<Room> startUpRooms = await roomsDBManager.GetAllRooms();
+            List<Room>? startUpRooms = await roomsDBManager.GetAllRooms();
             if (startUpRooms.Count == 0)
             {
                 await roomsDBManager.AddRoom(new Room(101, RoomType.Single));

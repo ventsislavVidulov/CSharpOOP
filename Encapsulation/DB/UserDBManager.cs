@@ -7,12 +7,13 @@ namespace Encapsulation.DB
 {
     internal class UserDBManager
     {
-        //TODO: Resolve the race conditions without Sleep()
         private string relativeDBPath = @"../../../../Encapsulation/DB/Data/Users.json";
+
         private JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+
+        private List<User>? users;
         public async void CreateDB()
         {
-            // Check if the file exists
             if (!File.Exists(relativeDBPath))
             {
                 using (FileStream fs = new(relativeDBPath, FileMode.Create))
@@ -24,21 +25,22 @@ namespace Encapsulation.DB
             }
         }
 
-        public async Task<List<User>> GetAllUsers()
+        public async Task<List<User>?> GetAllUsers()
         {
-            using (FileStream fs = new(relativeDBPath, FileMode.Open))
+            if (users == null)
             {
-                Thread.Sleep(10);
-                List<User> users = await JsonSerializer.DeserializeAsync<List<User>>(fs, options);
-                await fs.DisposeAsync();
-                return users;
+                using (FileStream fs = new(relativeDBPath, FileMode.Open))
+                {
+                    users = await JsonSerializer.DeserializeAsync<List<User>>(fs, options);
+                    await fs.DisposeAsync();
+                }
             }
+            return users;
         }
 
-        public async Task<User> AddUser(User user)
+        public async Task<User?> AddUser(User user)
         {
-            Thread.Sleep(10);
-            List<User> users = GetAllUsers().Result;
+            List<User> users = await GetAllUsers();
             User existingUser = users.Find(users => users.UserName == user.UserName);
             if (existingUser == null)
             {
@@ -59,12 +61,17 @@ namespace Encapsulation.DB
             }
         }
 
-        public async Task<User> LogIn(User user)
+        public async Task<User?> LogIn(User user)
         {
             List<User> users = await GetAllUsers();
             User existingUser = users.Find(eu => eu.UserName == user.UserName);
             if (existingUser != null)
             {
+                if (existingUser.Password != user.Password)
+                {
+                    Console.WriteLine("Invalid password");
+                    return null;
+                }
                 Console.WriteLine("User logged in successfully");
                 return existingUser;
             }

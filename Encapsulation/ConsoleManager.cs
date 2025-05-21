@@ -42,29 +42,54 @@ namespace Encapsulation
 
         public static User AddUser()
         {
-            Console.WriteLine("Enter user name");
-            string userName = Console.ReadLine();
-            Console.WriteLine("Enter password");
-            string password = Console.ReadLine();
-            Console.WriteLine("Confirm password");
-            string confirmPassword = Console.ReadLine();
-            if (password != confirmPassword)
+            string userName = "";
+            string password = "";
+            string confirmPassword = "";
+            while (userName == "")
             {
-                Console.WriteLine("Password and confirm password do not match");
+                Console.WriteLine("Enter user name");
+                userName = Console.ReadLine();
+            }
+            while (password == "")
+            {
                 Console.WriteLine("Enter password");
                 password = Console.ReadLine();
+            }
+            while (confirmPassword == "")
+            {
                 Console.WriteLine("Confirm password");
                 confirmPassword = Console.ReadLine();
+            }
+            if (password != confirmPassword)
+            {
+                while (password == "")
+                {
+                    Console.WriteLine("Enter password");
+                    password = Console.ReadLine();
+                }
+                while (confirmPassword == "")
+                {
+                    Console.WriteLine("Confirm password");
+                    confirmPassword = Console.ReadLine();
+                }
             }
             return new User(userName, password);
         }
 
         public static User LogIn()
         {
-            Console.WriteLine("Enter user name");
-            string userName = Console.ReadLine();
-            Console.WriteLine("Enter password");
-            string password = Console.ReadLine();
+            string userName = "";
+            string password = "";
+            while (userName == "")
+            {
+                Console.WriteLine("Enter user name");
+                userName = Console.ReadLine();
+            }
+            while (password == "")
+            {
+                Console.WriteLine("Enter password");
+                password = Console.ReadLine();
+            }
             return new User(userName, password);
         }
 
@@ -76,29 +101,28 @@ namespace Encapsulation
         public static void WelcomeMessage(User user)
         {
             Console.WriteLine("Welcome to the Hotel Management System");
-            if(user != null)
+            if (user != null)
             {
-            Console.WriteLine($"Curent user: {user?.UserName}, role: {user?.Role}");
+                Console.WriteLine($"Curent user: {user?.UserName}, role: {user?.Role}");
             }
-    
+
         }
 
         public static int NotLogetUser()
         {
-            int result;
-
             Console.WriteLine("No user logged in");
             Console.WriteLine("1 -> Create new user");
             Console.WriteLine("2 -> Log in");
-            int.TryParse(Console.ReadLine(), out result);
+            int.TryParse(Console.ReadLine(), out int result);
             return result;
         }
 
-        public static int LoggedAdmin() 
+        public static int LoggedAdmin()
         {
             Console.WriteLine("1 -> Show all rooms");
             Console.WriteLine("2 -> Log out");
-            return Int32.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(), out int result);
+            return result;
         }
 
         public static int LoggedUser()
@@ -106,24 +130,27 @@ namespace Encapsulation
             Console.WriteLine("1 -> Show all rooms");
             Console.WriteLine("2 -> Log out");
             Console.WriteLine("3 -> Reserve a room");
-            return Int32.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(), out int result);
+            return result;
         }
 
-        public static int RoomType() {
+        public static int RoomType()
+        {
             Console.WriteLine("Choose room type");
             Console.WriteLine("1 -> Single");
             Console.WriteLine("2 -> Double");
             Console.WriteLine("3 -> Suite");
             Console.WriteLine("4 -> Deluxe");
-            return Int32.Parse(Console.ReadLine());
+            int.TryParse(Console.ReadLine(), out int result);
+            return result;
         }
 
         public static ReservationInterval ReservedDates()
         {
             Console.WriteLine("Enter start date (yyyy-mm-dd)");
-            DateTime startDate = DateTime.Parse(Console.ReadLine());
+            DateTime.TryParse(Console.ReadLine(), out DateTime startDate);
             Console.WriteLine("Enter end date (yyyy-mm-dd)");
-            DateTime endDate = DateTime.Parse(Console.ReadLine());
+            DateTime.TryParse(Console.ReadLine(), out DateTime endDate);
             return new ReservationInterval(startDate, endDate);
         }
     }
