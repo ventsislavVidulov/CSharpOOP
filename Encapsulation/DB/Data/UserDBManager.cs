@@ -7,6 +7,7 @@ namespace Encapsulation.DB.Data
 {
     internal class UserDBManager
     {
+        //TODO: Resolve the race conditions without Sleep()
         private string relativeDBPath = @"../../../../Encapsulation/DB/Data/Users.json";
         private JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
         public async void CreateDB()

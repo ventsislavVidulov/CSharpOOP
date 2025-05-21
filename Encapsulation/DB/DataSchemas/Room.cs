@@ -2,7 +2,7 @@
 {
     internal enum RoomType
     {
-        Single,
+        Single = 1,
         Double,
         Suite,
         Deluxe
@@ -35,6 +35,8 @@
         public RoomStatus RoomStatus { get; set; }
 
         public List<AvaiableAmenities> Amenities { get; set; } = new List<AvaiableAmenities>();
+
+        public List<Tuple<DateTime, DateTime>> ReservedDates = new();
 
         public Room(int roomNumber, RoomType roomType)
         {

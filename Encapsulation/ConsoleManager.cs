@@ -76,7 +76,11 @@ namespace Encapsulation
         public static void WelcomeMessage(User user)
         {
             Console.WriteLine("Welcome to the Hotel Management System");
+            if(user != null)
+            {
             Console.WriteLine($"Curent user: {user?.UserName}, role: {user?.Role}");
+            }
+    
         }
 
         public static int NotLogetUser()
@@ -98,7 +102,26 @@ namespace Encapsulation
         {
             Console.WriteLine("1 -> Show all rooms");
             Console.WriteLine("2 -> Log out");
+            Console.WriteLine("3 -> Reserve a room");
             return Int32.Parse(Console.ReadLine());
+        }
+
+        public static int RoomType() {
+            Console.WriteLine("Choose room type");
+            Console.WriteLine("1 -> Single");
+            Console.WriteLine("2 -> Double");
+            Console.WriteLine("3 -> Suite");
+            Console.WriteLine("4 -> Deluxe");
+            return Int32.Parse(Console.ReadLine());
+        }
+
+        public static Tuple<DateTime, DateTime> ReservedDates()
+        {
+            Console.WriteLine("Enter start date (yyyy-mm-dd)");
+            DateTime startDate = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Enter end date (yyyy-mm-dd)");
+            DateTime endDate = DateTime.Parse(Console.ReadLine());
+            return new Tuple<DateTime, DateTime>(startDate, endDate);
         }
     }
 }
