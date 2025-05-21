@@ -9,10 +9,13 @@ namespace Encapsulation
         static async Task Main(string[] args)
         {
             RoomsDBManager roomsDBManager = new RoomsDBManager();
-            await Task.Run(roomsDBManager.CreateDB);
+            await roomsDBManager.CreateDB();
             RoomController roomController = new RoomController(roomsDBManager);
             UserDBManager userDBManager = new UserDBManager();
-            List<Room>? startUpRooms = await roomsDBManager.GetAllRooms();
+            await userDBManager.CreateDB();
+            UserController userController = new UserController(userDBManager);
+            DateTime date = DateTime.Now.Date;
+            List<Room>? startUpRooms = await roomController.GetAllRooms();
             if (startUpRooms.Count == 0)
             {
                 await roomsDBManager.AddRoom(new Room(101, RoomType.Single));
@@ -28,6 +31,7 @@ namespace Encapsulation
             while (true)
             {
                 ConsoleManager.WelcomeMessage(curentUser);
+                Console.WriteLine(date);
                 if (curentUser == null)
                 {
                     ;
@@ -56,7 +60,7 @@ namespace Encapsulation
                         int choosenOption = ConsoleManager.LoggedUser();
                         if (choosenOption == 1)
                         {
-                            List<Room> rooms = await roomController.GetAllRooms();
+                            List<Room> rooms = await roomController.GetAllRoomsByDate(date);
                             ConsoleManager.ShowAllRooms(rooms);
                         }
                         else if (choosenOption == 2)
@@ -71,13 +75,17 @@ namespace Encapsulation
                             ReservationInterval dates = ConsoleManager.ReservedDates();
                             await roomController.ReserveRoom(Enum.GetName(typeof(RoomType), roomType), dates);
                         }
+                        else if (choosenOption == 4)
+                        {
+                            date = ConsoleManager.ChangeDate();
+                        }
                     }
                     else if (curentUser.Role == "admin")
                     {
                         int choosenOption = ConsoleManager.LoggedAdmin();
                         if (choosenOption == 1)
                         {
-                            List<Room> rooms = await roomController.GetAllRooms();
+                            List<Room> rooms = await roomController.GetAllRoomsByDate(date);
                             ConsoleManager.ShowAllRooms(rooms);
                         }
                         else if (choosenOption == 2)
@@ -86,7 +94,6 @@ namespace Encapsulation
                             ConsoleManager.LogOut();
                         }
                     }
-
                 }
             }
         }

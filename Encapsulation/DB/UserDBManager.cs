@@ -1,24 +1,28 @@
 ﻿using Encapsulation.DB.DataSchemas;
-using System.Reflection.Metadata;
+using Encapsulation.Interfaces;
 using System.Text.Json;
 
 
 namespace Encapsulation.DB
 {
-    internal class UserDBManager
+    internal class UserDBManager : IUserDBManager
     {
         private string relativeDBPath = @"../../../../Encapsulation/DB/Data/Users.json";
 
         private JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
 
         private List<User>? users;
-        public async void CreateDB()
+
+        //public UserDBManager()
+        //{
+        //    Task.Run(CreateDB);
+        //}
+        public async Task CreateDB()
         {
             if (!File.Exists(relativeDBPath))
             {
                 using (FileStream fs = new(relativeDBPath, FileMode.Create))
                 {
-                    Thread.Sleep(10);
                     await JsonSerializer.SerializeAsync(fs, new List<User>(), options);
                     await fs.DisposeAsync();
                 }
@@ -47,7 +51,6 @@ namespace Encapsulation.DB
                 users.Add(user);
                 using (FileStream fw = new(relativeDBPath, FileMode.Open))
                 {
-                    Thread.Sleep(10);
                     await JsonSerializer.SerializeAsync(fw, users, options);
                     await fw.DisposeAsync();
                     Console.WriteLine("User added successfully");

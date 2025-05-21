@@ -11,7 +11,12 @@ namespace Encapsulation.DB
         private JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
 
         private List<Room>? rooms;
-        
+
+        //public RoomsDBManager()
+        //{
+        //    Task.Run(CreateDB);
+        //}
+
         public async Task CreateDB()
         {
             // Check if the file exists

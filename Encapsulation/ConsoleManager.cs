@@ -121,6 +121,7 @@ namespace Encapsulation
         {
             Console.WriteLine("1 -> Show all rooms");
             Console.WriteLine("2 -> Log out");
+            //Console.WriteLine("3 -> Add new room");
             int.TryParse(Console.ReadLine(), out int result);
             return result;
         }
@@ -130,6 +131,7 @@ namespace Encapsulation
             Console.WriteLine("1 -> Show all rooms");
             Console.WriteLine("2 -> Log out");
             Console.WriteLine("3 -> Reserve a room");
+            Console.WriteLine("4 -> Change the date to see the aviability of rooms for that date");
             int.TryParse(Console.ReadLine(), out int result);
             return result;
         }
@@ -152,6 +154,13 @@ namespace Encapsulation
             Console.WriteLine("Enter end date (yyyy-mm-dd)");
             DateTime.TryParse(Console.ReadLine(), out DateTime endDate);
             return new ReservationInterval(startDate, endDate);
+        }
+
+        public static DateTime ChangeDate()
+        {
+            Console.WriteLine("Enter date to check room aviability (yyyy-mm-dd)");
+            DateTime.TryParse(Console.ReadLine(), out DateTime date);
+            return date;
         }
     }
 }

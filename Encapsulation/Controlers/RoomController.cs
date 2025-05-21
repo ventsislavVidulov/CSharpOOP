@@ -15,7 +15,33 @@ namespace Encapsulation.Controlers
 
         public async Task<List<Room>> GetAllRooms()
         {
-            rooms = await roomDBManager.GetAllRooms();
+            if (rooms.Count == 0)
+            {
+                rooms = await roomDBManager.GetAllRooms();
+            }
+            return rooms;
+
+        }
+
+        public async Task<List<Room>> GetAllRoomsByDate(DateTime date)
+        {
+            rooms = await GetAllRooms();
+            foreach (var room in rooms)
+            {
+                foreach (var interval in room.ReserveationIntervals)
+                {
+                    if (interval.StartDate <= date && interval.EndDate > date)
+                    {
+                        room.RoomStatus = RoomStatus.Booked;
+                        room.NumberOfOccupants = room.NumberOfBeds;
+                    }
+                    else
+                    {
+                        room.RoomStatus = RoomStatus.Available;
+                        room.NumberOfOccupants = 0;
+                    }
+                }
+            }
             return rooms;
         }
 
