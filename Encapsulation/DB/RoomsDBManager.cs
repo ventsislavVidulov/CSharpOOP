@@ -71,7 +71,6 @@ namespace Encapsulation.DB
             {
                 Console.WriteLine("Room not found");
             }
-            ConsoleManager.ShowAllRooms(await GetAllRooms());
         }
 
         public Task DeleteRoom(Room roomToRemove)
