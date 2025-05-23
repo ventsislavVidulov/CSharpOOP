@@ -100,10 +100,15 @@ namespace Encapsulation
 
         public static void WelcomeMessage(User user)
         {
-            Console.WriteLine("Welcome to the Hotel Management System");
             if (user != null)
             {
                 Console.WriteLine($"Curent user: {user?.UserName}, role: {user?.Role}");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Welcome to the Hotel Management System");
+                Console.ResetColor();
             }
 
         }

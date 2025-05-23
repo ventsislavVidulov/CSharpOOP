@@ -12,11 +12,6 @@ namespace Encapsulation.DB
 
         private List<Room>? rooms;
 
-        //public RoomsDBManager()
-        //{
-        //    Task.Run(CreateDB);
-        //}
-
         public async Task CreateDB()
         {
             // Check if the file exists
@@ -25,7 +20,7 @@ namespace Encapsulation.DB
                 using (FileStream fs = new(relativeDBPath, FileMode.Create))
                 {
                     await JsonSerializer.SerializeAsync(fs, new List<Room>(), options);
-                    await fs.DisposeAsync();
+                    //await fs.DisposeAsync();
                 }
             }
         }
@@ -37,7 +32,7 @@ namespace Encapsulation.DB
                 using (FileStream fs = new(relativeDBPath, FileMode.Open))
                 {
                     rooms = await JsonSerializer.DeserializeAsync<List<Room>>(fs, options);
-                    await fs.DisposeAsync();
+                    //await fs.DisposeAsync();
                 }
             }
             return rooms;
@@ -47,10 +42,12 @@ namespace Encapsulation.DB
         {
             List<Room> rooms = await GetAllRooms();
             rooms.Add(room);
-            using (FileStream fw = new(relativeDBPath, FileMode.Open))
+            using (FileStream fw = new(relativeDBPath, FileMode.Create))
             {
                 await JsonSerializer.SerializeAsync(fw, rooms, options);
-                await fw.DisposeAsync();
+                //reset rooms so that the next call to GetAllRooms will read from the file the actual data
+                rooms = null;
+                //await fw.DisposeAsync();
             }
         }
 
@@ -61,21 +58,44 @@ namespace Encapsulation.DB
             if (roomToUpdateIndex != -1)
             {
                 rooms[roomToUpdateIndex] = roomToUpdate;
-                using (FileStream fw = new(relativeDBPath, FileMode.Open))
+                using (FileStream fw = new(relativeDBPath, FileMode.Create))
                 {
                     await JsonSerializer.SerializeAsync(fw, rooms, options);
-                    await fw.DisposeAsync();
+                    //reset rooms so that the next call to GetAllRooms will read from the file the actual data
+                    rooms = null;
+                    //await fw.DisposeAsync();
                 }
             }
             else
             {
+                Console.BackgroundColor = ConsoleColor.Red;
                 Console.WriteLine("Room not found");
+                Console.ResetColor();
             }
         }
 
-        public Task DeleteRoom(Room roomToRemove)
+        public async Task DeleteRoom(Room roomToRemove)
         {
-            throw new NotImplementedException();
+            //TODO: check if the room has any reservations and resolve it before remove
+            List<Room> rooms = await GetAllRooms();
+            int roomToRemoveIndex = rooms.FindIndex(r => r.RoomNumber == roomToRemove.RoomNumber);
+
+            if (roomToRemoveIndex != -1)
+            {
+                using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                {
+                    rooms.RemoveAll(r => r.RoomNumber == roomToRemove.RoomNumber);
+                    await JsonSerializer.SerializeAsync(fw, rooms, options);
+                    //reset rooms so that the next call to GetAllRooms will read from the file the actual data
+                    rooms = null;
+                }
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Room not found");
+                Console.ResetColor();
+            }
         }
     }
 }

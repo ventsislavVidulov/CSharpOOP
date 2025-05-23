@@ -10,9 +10,9 @@
     "Amenities": [],
     "ReserveationIntervals": [
       {
-        "StartDate": "2025-05-21T00:00:00",
-        "EndDate": "2025-05-22T00:00:00",
-        "ReservedDays": 1
+        "StartDate": "2025-05-23T00:00:00",
+        "EndDate": "2025-05-30T00:00:00",
+        "ReservedDays": 7
       }
     ]
   },
@@ -25,13 +25,7 @@
     "CancellationFee": 30,
     "RoomStatus": 0,
     "Amenities": [],
-    "ReserveationIntervals": [
-      {
-        "StartDate": "2025-05-21T00:00:00",
-        "EndDate": "2025-05-22T00:00:00",
-        "ReservedDays": 1
-      }
-    ]
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 103,
@@ -71,9 +65,9 @@
     "Amenities": [],
     "ReserveationIntervals": [
       {
-        "StartDate": "2025-05-21T00:00:00",
-        "EndDate": "2025-05-22T00:00:00",
-        "ReservedDays": 1
+        "StartDate": "2025-05-23T00:00:00",
+        "EndDate": "2025-05-30T00:00:00",
+        "ReservedDays": 7
       }
     ]
   },
