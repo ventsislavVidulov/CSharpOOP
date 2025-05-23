@@ -19,12 +19,22 @@ namespace Encapsulation.DB
         //}
         public async Task CreateDB()
         {
+            // Check if the DB file exists
             if (!File.Exists(relativeDBPath))
             {
-                using (FileStream fs = new(relativeDBPath, FileMode.Create))
+                try
                 {
-                    await JsonSerializer.SerializeAsync(fs, new List<User>(), options);
-                    //await fs.DisposeAsync();
+                    using (FileStream fs = new(relativeDBPath, FileMode.Create))
+                    {
+                        await JsonSerializer.SerializeAsync(fs, new List<User>(), options);
+                        //await fs.DisposeAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Error creating DB: {ex.Message}");
+                    Console.ResetColor();
                 }
             }
         }
@@ -33,10 +43,20 @@ namespace Encapsulation.DB
         {
             if (users == null)
             {
-                using (FileStream fs = new(relativeDBPath, FileMode.Open))
+                try
                 {
-                    users = await JsonSerializer.DeserializeAsync<List<User>>(fs, options);
-                    //await fs.DisposeAsync();
+                    using (FileStream fs = new(relativeDBPath, FileMode.Open))
+                    {
+                        users = await JsonSerializer.DeserializeAsync<List<User>>(fs, options);
+                        //await fs.DisposeAsync();
+                    }
+                }
+                catch (JsonException ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Error deserializing JSON: {ex.Message}");
+                    Console.ResetColor();
+                    users = null;
                 }
             }
             return users;
@@ -49,14 +69,25 @@ namespace Encapsulation.DB
             if (existingUser == null)
             {
                 users.Add(user);
-                using (FileStream fw = new(relativeDBPath, FileMode.Create))
+
+                try
                 {
-                    await JsonSerializer.SerializeAsync(fw, users, options);
-                    //await fw.DisposeAsync();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("User added successfully");
+                    using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                    {
+                        await JsonSerializer.SerializeAsync(fw, users, options);
+                        //await fw.DisposeAsync();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"{user.UserName} added successfully");
+                        Console.ResetColor();
+                        return user;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Error adding user: {ex.Message}");
                     Console.ResetColor();
-                    return user;
+                    return null;
                 }
             }
             else
@@ -68,6 +99,7 @@ namespace Encapsulation.DB
             }
         }
 
+
         public async Task<User?> LogIn(User user)
         {
             List<User> users = await GetAllUsers();
@@ -77,12 +109,12 @@ namespace Encapsulation.DB
                 if (existingUser.Password != user.Password)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid password");
+                    Console.WriteLine("Invalid username or password");
                     Console.ResetColor();
                     return null;
                 }
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("User logged in successfully");
+                Console.WriteLine($"{user.UserName} logged in successfully");
                 Console.ResetColor();
                 return existingUser;
             }
