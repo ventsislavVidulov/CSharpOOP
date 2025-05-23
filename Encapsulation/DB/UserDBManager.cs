@@ -24,7 +24,7 @@ namespace Encapsulation.DB
                 using (FileStream fs = new(relativeDBPath, FileMode.Create))
                 {
                     await JsonSerializer.SerializeAsync(fs, new List<User>(), options);
-                    await fs.DisposeAsync();
+                    //await fs.DisposeAsync();
                 }
             }
         }
@@ -36,7 +36,7 @@ namespace Encapsulation.DB
                 using (FileStream fs = new(relativeDBPath, FileMode.Open))
                 {
                     users = await JsonSerializer.DeserializeAsync<List<User>>(fs, options);
-                    await fs.DisposeAsync();
+                    //await fs.DisposeAsync();
                 }
             }
             return users;
@@ -52,14 +52,18 @@ namespace Encapsulation.DB
                 using (FileStream fw = new(relativeDBPath, FileMode.Open))
                 {
                     await JsonSerializer.SerializeAsync(fw, users, options);
-                    await fw.DisposeAsync();
+                    //await fw.DisposeAsync();
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("User added successfully");
+                    Console.ResetColor();
                     return user;
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("User already exists");
+                Console.ResetColor();
                 return null;
             }
         }
@@ -72,15 +76,21 @@ namespace Encapsulation.DB
             {
                 if (existingUser.Password != user.Password)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid password");
+                    Console.ResetColor();
                     return null;
                 }
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("User logged in successfully");
+                Console.ResetColor();
                 return existingUser;
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid username or password");
+                Console.ResetColor();
                 return null;
             }
         }
