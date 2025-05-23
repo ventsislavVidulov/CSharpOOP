@@ -49,7 +49,7 @@ namespace Encapsulation.DB
             if (existingUser == null)
             {
                 users.Add(user);
-                using (FileStream fw = new(relativeDBPath, FileMode.Open))
+                using (FileStream fw = new(relativeDBPath, FileMode.Create))
                 {
                     await JsonSerializer.SerializeAsync(fw, users, options);
                     //await fw.DisposeAsync();
