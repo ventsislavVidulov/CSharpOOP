@@ -17,10 +17,20 @@ namespace Encapsulation.DB
             // Check if the file exists
             if (!File.Exists(relativeDBPath))
             {
-                using (FileStream fs = new(relativeDBPath, FileMode.Create))
+                try
                 {
-                    await JsonSerializer.SerializeAsync(fs, new List<Room>(), options);
-                    //await fs.DisposeAsync();
+                    // Create the file and write an empty list to it
+                    using (FileStream fs = new(relativeDBPath, FileMode.Create))
+                    {
+                        await JsonSerializer.SerializeAsync(fs, new List<Room>(), options);
+                        //await fs.DisposeAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Error creating DB: {ex.Message}");
+                    Console.ResetColor();
                 }
             }
         }
@@ -29,10 +39,19 @@ namespace Encapsulation.DB
         {
             if (rooms == null)
             {
-                using (FileStream fs = new(relativeDBPath, FileMode.Open))
+                try
                 {
-                    rooms = await JsonSerializer.DeserializeAsync<List<Room>>(fs, options);
-                    //await fs.DisposeAsync();
+                    using (FileStream fs = new(relativeDBPath, FileMode.Open))
+                    {
+                        rooms = await JsonSerializer.DeserializeAsync<List<Room>>(fs, options);
+                        //await fs.DisposeAsync();
+                    }
+                }
+                catch (JsonException ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Error deserializing JSON: {ex.Message}");
+                    Console.ResetColor();
                 }
             }
             return rooms;
@@ -40,30 +59,55 @@ namespace Encapsulation.DB
 
         public async Task AddRoom(Room room)
         {
-            List<Room> rooms = await GetAllRooms();
+            rooms = await GetAllRooms();
             rooms.Add(room);
-            using (FileStream fw = new(relativeDBPath, FileMode.Create))
+            try
             {
-                await JsonSerializer.SerializeAsync(fw, rooms, options);
+                using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                {
+                    await JsonSerializer.SerializeAsync(fw, rooms, options);
+                    //await fw.DisposeAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error adding room: {ex.Message}");
+                Console.ResetColor();
+            }
+            finally
+            {
                 //reset rooms so that the next call to GetAllRooms will read from the file the actual data
+                //or if the writting failed removes the list with the newly added room
                 rooms = null;
-                //await fw.DisposeAsync();
             }
         }
 
         public async Task UpdateRoom(Room roomToUpdate)
         {
-            List<Room> rooms = await GetAllRooms();
+            rooms = await GetAllRooms();
             int roomToUpdateIndex = rooms.FindIndex(r => r.RoomNumber == roomToUpdate.RoomNumber);
             if (roomToUpdateIndex != -1)
             {
-                rooms[roomToUpdateIndex] = roomToUpdate;
-                using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                try
                 {
-                    await JsonSerializer.SerializeAsync(fw, rooms, options);
+                    rooms[roomToUpdateIndex] = roomToUpdate;
+                    using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                    {
+                        await JsonSerializer.SerializeAsync(fw, rooms, options);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Error updating room: {ex.Message}");
+                    Console.ResetColor();
+                }
+                finally
+                {
                     //reset rooms so that the next call to GetAllRooms will read from the file the actual data
+                    //or if the writting failed removes the list with the newly added room
                     rooms = null;
-                    //await fw.DisposeAsync();
                 }
             }
             else
@@ -82,11 +126,24 @@ namespace Encapsulation.DB
 
             if (roomToRemoveIndex != -1)
             {
-                using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                try
                 {
-                    rooms.RemoveAll(r => r.RoomNumber == roomToRemove.RoomNumber);
-                    await JsonSerializer.SerializeAsync(fw, rooms, options);
+                    using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                    {
+                        rooms.RemoveAll(r => r.RoomNumber == roomToRemove.RoomNumber);
+                        await JsonSerializer.SerializeAsync(fw, rooms, options);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Error deleting room: {ex.Message}");
+                    Console.ResetColor();
+                }
+                finally
+                {
                     //reset rooms so that the next call to GetAllRooms will read from the file the actual data
+                    //or if the writting failed removes the list with the newly removed room
                     rooms = null;
                 }
             }

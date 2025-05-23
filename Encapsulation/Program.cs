@@ -72,8 +72,9 @@ namespace Encapsulation
                         {
                             int roomType = ConsoleManager.RoomType();
                             List<Room> rooms = await roomController.GetAllRoomsByRoomType(Enum.GetName(typeof(RoomType), roomType));
-                            ReservationInterval dates = ConsoleManager.ReservedDates();
-                            await roomController.ReserveRoom(Enum.GetName(typeof(RoomType), roomType), dates);
+                            var dates = ConsoleManager.ReservedDates();
+                            var reservationInterval = new ReservationInterval(dates.Item1, dates.Item2, 1);
+                            //await roomController.ReserveRoom(Enum.GetName(typeof(RoomType), roomType), dates);
                         }
                         else if (choosenOption == 4)
                         {

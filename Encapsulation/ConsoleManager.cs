@@ -152,13 +152,13 @@ namespace Encapsulation
             return result;
         }
 
-        public static ReservationInterval ReservedDates()
+        public static Tuple<DateTime, DateTime> ReservedDates()
         {
             Console.WriteLine("Enter start date (yyyy-mm-dd)");
             DateTime.TryParse(Console.ReadLine(), out DateTime startDate);
             Console.WriteLine("Enter end date (yyyy-mm-dd)");
             DateTime.TryParse(Console.ReadLine(), out DateTime endDate);
-            return new ReservationInterval(startDate, endDate);
+            return new Tuple<DateTime, DateTime>(startDate, endDate);
         }
 
         public static DateTime ChangeDate()

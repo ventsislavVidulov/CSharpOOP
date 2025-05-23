@@ -69,7 +69,9 @@
             }
             else
             {
-                throw new ArgumentException("Invalid room type");
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid room type");
+                Console.ResetColor();
             }
             NumberOfOccupants = 0;
             CancellationFee = PricePerNight * Configuration.DiscountPercent;
