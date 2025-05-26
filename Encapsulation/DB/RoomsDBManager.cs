@@ -22,7 +22,7 @@ namespace Encapsulation.DB
                     // Create the file and write an empty list to it
                     using (FileStream fs = new(relativeDBPath, FileMode.Create))
                     {
-                        await JsonSerializer.SerializeAsync(fs, new List<Room>(), options);
+                        await JsonSerializer.SerializeAsync(fs, (new List<Room>()), options);
                         //await fs.DisposeAsync();
                     }
                 }

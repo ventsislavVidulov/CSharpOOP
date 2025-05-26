@@ -76,10 +76,10 @@ namespace Encapsulation
             return new User(userName, password);
         }
 
-        public static User LogIn()
+        public static void LogIn(out string userName, out string password)
         {
-            string userName = "";
-            string password = "";
+            userName = "";
+            password = "";
             while (userName == "")
             {
                 Console.WriteLine("Enter user name");
@@ -90,7 +90,6 @@ namespace Encapsulation
                 Console.WriteLine("Enter password");
                 password = Console.ReadLine();
             }
-            return new User(userName, password);
         }
 
         public static void LogOut()

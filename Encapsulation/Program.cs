@@ -14,6 +14,8 @@ namespace Encapsulation
             UserDBManager userDBManager = new UserDBManager();
             await userDBManager.CreateDB();
             UserController userController = new UserController(userDBManager);
+            OrdersCounterDBManager ordersCounterDBManager = new OrdersCounterDBManager();
+            await ordersCounterDBManager.CreateDB();
             DateTime date = DateTime.Now.Date;
             List<Room>? startUpRooms = await roomController.GetAllRooms();
             if (startUpRooms.Count == 0)
@@ -46,7 +48,10 @@ namespace Encapsulation
                     }
                     else if (choosenOption == 2)
                     {
-                        curentUser = await userDBManager.LogIn(ConsoleManager.LogIn());
+                        string userName;
+                        string password;
+                        ConsoleManager.LogIn(out userName, out password);
+                        curentUser = await userController.LogIn(userName, password);
                         if (curentUser != null)
                         {
                             Console.WriteLine($"Welcome {curentUser.UserName}");
@@ -70,11 +75,15 @@ namespace Encapsulation
                         }
                         else if (choosenOption == 3)
                         {
+                            //TODO must be formed some kind of transaction when updating rooms and user
                             int roomType = ConsoleManager.RoomType();
                             List<Room> rooms = await roomController.GetAllRoomsByRoomType(Enum.GetName(typeof(RoomType), roomType));
                             var dates = ConsoleManager.ReservedDates();
-                            var reservationInterval = new ReservationInterval(dates.Item1, dates.Item2, 1);
-                            //await roomController.ReserveRoom(Enum.GetName(typeof(RoomType), roomType), dates);
+                            var counter = await ordersCounterDBManager.GetCounter();
+                            curentUser.Reservations.Add(counter.CurrentOrderId);
+                            var reservationInterval = new ReservationInterval(dates.Item1, dates.Item2, counter.CurrentOrderId);
+                            await ordersCounterDBManager.IncreaseOrderId();
+                            await roomController.ReserveRoom(Enum.GetName(typeof(RoomType), roomType), reservationInterval);
                         }
                         else if (choosenOption == 4)
                         {

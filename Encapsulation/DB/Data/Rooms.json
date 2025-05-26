@@ -11,8 +11,15 @@
     "ReserveationIntervals": [
       {
         "StartDate": "2025-05-23T00:00:00",
-        "EndDate": "2025-05-30T00:00:00",
-        "ReservedDays": 7
+        "EndDate": "2025-05-24T00:00:00",
+        "ReservedDays": 1,
+        "ReservationId": 8
+      },
+      {
+        "StartDate": "2025-05-26T00:00:00",
+        "EndDate": "2025-05-27T00:00:00",
+        "ReservedDays": 1,
+        "ReservationId": 9
       }
     ]
   },
@@ -58,18 +65,12 @@
     "RoomNumber": 201,
     "RoomType": 1,
     "NumberOfBeds": 1,
-    "NumberOfOccupants": 0,
+    "NumberOfOccupants": 1,
     "PricePerNight": 100,
     "CancellationFee": 20,
-    "RoomStatus": 0,
+    "RoomStatus": 1,
     "Amenities": [],
-    "ReserveationIntervals": [
-      {
-        "StartDate": "2025-05-23T00:00:00",
-        "EndDate": "2025-05-30T00:00:00",
-        "ReservedDays": 7
-      }
-    ]
+    "ReserveationIntervals": []
   },
   {
     "RoomNumber": 202,

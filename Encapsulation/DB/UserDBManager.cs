@@ -1,5 +1,6 @@
 ﻿using Encapsulation.DB.DataSchemas;
 using Encapsulation.Interfaces;
+using System.ComponentModel;
 using System.Text.Json;
 
 
@@ -11,12 +12,7 @@ namespace Encapsulation.DB
 
         private JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
 
-        private List<User>? users;
-
-        //public UserDBManager()
-        //{
-        //    Task.Run(CreateDB);
-        //}
+        private List<User>? cachedUsers;
         public async Task CreateDB()
         {
             // Check if the DB file exists
@@ -41,14 +37,13 @@ namespace Encapsulation.DB
 
         public async Task<List<User>?> GetAllUsers()
         {
-            if (users == null)
+            if (cachedUsers == null)
             {
                 try
                 {
                     using (FileStream fs = new(relativeDBPath, FileMode.Open))
                     {
-                        users = await JsonSerializer.DeserializeAsync<List<User>>(fs, options);
-                        //await fs.DisposeAsync();
+                        cachedUsers = await JsonSerializer.DeserializeAsync<List<User>>(fs, options);
                     }
                 }
                 catch (JsonException ex)
@@ -56,75 +51,103 @@ namespace Encapsulation.DB
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Error deserializing JSON: {ex.Message}");
                     Console.ResetColor();
-                    users = null;
+                    cachedUsers = null;
                 }
             }
-            return users;
+            return cachedUsers;
         }
-
-        public async Task<User?> AddUser(User user)
+        public async Task<User?> GetUser(string userName)
         {
             List<User> users = await GetAllUsers();
-            User existingUser = users.Find(users => users.UserName == user.UserName);
-            if (existingUser == null)
+            User existingUser = users.Find(eu => eu.UserName == userName);
+            if (existingUser != null)
             {
-                users.Add(user);
-
-                try
-                {
-                    using (FileStream fw = new(relativeDBPath, FileMode.Create))
-                    {
-                        await JsonSerializer.SerializeAsync(fw, users, options);
-                        //await fw.DisposeAsync();
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"{user.UserName} added successfully");
-                        Console.ResetColor();
-                        return user;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"Error adding user: {ex.Message}");
-                    Console.ResetColor();
-                    return null;
-                }
+                return existingUser;
             }
             else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("User not found");
+                Console.ResetColor();
+                return null;
+            }
+        }
+
+        public async Task<User?> AddUser(User userToBeAdded)
+        {
+            List<User> usersFromDB = await GetAllUsers();
+            User existingUserInDB = usersFromDB.Find(ufDB => ufDB.UserName == userToBeAdded.UserName);
+            //early exit if user exists
+            if (existingUserInDB != null)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("User already exists");
                 Console.ResetColor();
                 return null;
             }
-        }
 
-
-        public async Task<User?> LogIn(User user)
-        {
-            List<User> users = await GetAllUsers();
-            User existingUser = users.Find(eu => eu.UserName == user.UserName);
-            if (existingUser != null)
+            usersFromDB.Add(userToBeAdded);
+            try
             {
-                if (existingUser.Password != user.Password)
+                using (FileStream fw = new(relativeDBPath, FileMode.Create))
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid username or password");
+                    await JsonSerializer.SerializeAsync(fw, usersFromDB, options);
+                    //await fw.DisposeAsync();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{userToBeAdded.UserName} added successfully");
                     Console.ResetColor();
-                    return null;
+                    return userToBeAdded;
                 }
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"{user.UserName} logged in successfully");
-                Console.ResetColor();
-                return existingUser;
             }
-            else
+            catch (Exception ex)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid username or password");
+                Console.WriteLine($"Error adding user: {ex.Message}");
                 Console.ResetColor();
                 return null;
             }
+            finally
+            {
+                //reset the cached users so the next GetAllUsers() call returns the actual users
+
+                //the cacheing may be optimized if we say "cachedUsers = usersFromDB;" this will omit one reading from DB in the next GetAllUsers() call,
+                //but it rises concern for "one sorce of truth" policy
+                cachedUsers = null;
+            }
+
+        }
+
+        public async Task<User?> UpdateUser(User userToBeUpdated)
+        {
+            List<User> usersFromDB = await GetAllUsers();
+            int userId = usersFromDB.FindIndex(savedUser => savedUser.UserName == userToBeUpdated.UserName);
+            //early exit if user is not found
+            if (userId == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("User not found");
+                Console.ResetColor();
+            }
+            try
+            {
+                usersFromDB[userId] = userToBeUpdated;
+                using (FileStream fw = new(relativeDBPath, FileMode.Create))
+                {
+                    await JsonSerializer.SerializeAsync(fw, usersFromDB, options);
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"{userToBeUpdated.UserName} updated successfully");
+                    Console.ResetColor();
+                    return userToBeUpdated;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Error updating user: {ex.Message}");
+                Console.ResetColor();
+                return null;
+            }
+            finally { cachedUsers = null; }
         }
     }
 }
