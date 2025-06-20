@@ -8,7 +8,7 @@
 
         bool IsPerishable();
 
-        void HandleExpiration();
+        void HandlePerish();
 
         void DisplayIsPerishable();
     }
