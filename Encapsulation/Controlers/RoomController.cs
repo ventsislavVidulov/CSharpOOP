@@ -46,16 +46,20 @@ namespace Encapsulation.Controlers
         }
 
 
-        public async Task<List<Room>> GetAllRoomsByRoomType(string roomType)
+        public async Task<List<Room>> GetAllAvailableRoomsForGivenRoomType(string roomType)
         {
-            List<Room> filteredRooms = rooms.FindAll(r => Enum.GetName(typeof(RoomType), r.RoomType) == roomType);
-            List<Room> avaiableFilteredRooms = filteredRooms.FindAll(r => r.RoomStatus == 0);
-            return avaiableFilteredRooms;
+            List<Room> allRooms = await GetAllRooms();
+            List<Room> availableFilteredRooms = allRooms
+                .Where(r => Enum.GetName(typeof(RoomType), r.RoomType) == roomType && r.RoomStatus == 0)
+                .ToList();
+            //List<Room> filteredRooms = allRooms.FindAll(r => Enum.GetName(typeof(RoomType), r.RoomType) == roomType);
+            //List<Room> availableFilteredRooms = filteredRooms.FindAll(r => r.RoomStatus == 0);
+            return availableFilteredRooms;
         }
 
         public async Task ReserveRoom(string roomType, ReservationInterval reservationInterval)
         {
-            List<Room> rooms = await GetAllRoomsByRoomType(roomType);
+            List<Room> rooms = await GetAllAvailableRoomsForGivenRoomType(roomType);
             //Cheking if this room type exists
             if (rooms != null)
             {
@@ -75,9 +79,9 @@ namespace Encapsulation.Controlers
                         }
                         else
                         {
+                            //checking if the reservation interval is not overlapping with any of the saved intervals
                             foreach (var savedInterval in room.ReserveationIntervals)
                             {
-                                //checking if the reservation interval is not overlapping with any of the saved intervals
                                 if ((reservationInterval.StartDate >= savedInterval.EndDate && reservationInterval.EndDate >= savedInterval.EndDate)
                                     || (reservationInterval.StartDate <= savedInterval.StartDate && reservationInterval.EndDate <= savedInterval.StartDate))
                                 {
@@ -97,12 +101,16 @@ namespace Encapsulation.Controlers
                 }
                 if (!isRoomAvailable)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("No available rooms");
+                    Console.ResetColor();
                 }
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Room not found");
+                Console.ResetColor();
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using Encapsulation.DB.DataSchemas;
 using Encapsulation.Interfaces;
-using System.ComponentModel;
 using System.Text.Json;
 
 
@@ -58,8 +57,8 @@ namespace Encapsulation.DB
         }
         public async Task<User?> GetUser(string userName)
         {
-            List<User> users = await GetAllUsers();
-            User existingUser = users.Find(eu => eu.UserName == userName);
+            List<User>? users = await GetAllUsers();
+            User? existingUser = users.Find(eu => eu.UserName == userName);
             if (existingUser != null)
             {
                 return existingUser;
@@ -75,8 +74,8 @@ namespace Encapsulation.DB
 
         public async Task<User?> AddUser(User userToBeAdded)
         {
-            List<User> usersFromDB = await GetAllUsers();
-            User existingUserInDB = usersFromDB.Find(ufDB => ufDB.UserName == userToBeAdded.UserName);
+            List<User>? usersFromDB = await GetAllUsers();
+            User? existingUserInDB = usersFromDB.Find(ufDB => ufDB.UserName == userToBeAdded.UserName);
             //early exit if user exists
             if (existingUserInDB != null)
             {
@@ -119,7 +118,7 @@ namespace Encapsulation.DB
 
         public async Task<User?> UpdateUser(User userToBeUpdated)
         {
-            List<User> usersFromDB = await GetAllUsers();
+            List<User>? usersFromDB = await GetAllUsers();
             int userId = usersFromDB.FindIndex(savedUser => savedUser.UserName == userToBeUpdated.UserName);
             //early exit if user is not found
             if (userId == -1)

@@ -8,7 +8,7 @@ namespace Encapsulation.Interfaces
 
         public Task<List<User>?> GetAllUsers();
 
-        public Task<User> GetUser(string userName);
+        public Task<User?> GetUser(string userName);
 
         public Task<User?> AddUser(User user);
 

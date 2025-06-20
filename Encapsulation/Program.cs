@@ -11,11 +11,14 @@ namespace Encapsulation
             RoomsDBManager roomsDBManager = new RoomsDBManager();
             await roomsDBManager.CreateDB();
             RoomController roomController = new RoomController(roomsDBManager);
+
             UserDBManager userDBManager = new UserDBManager();
             await userDBManager.CreateDB();
             UserController userController = new UserController(userDBManager);
+
             OrdersCounterDBManager ordersCounterDBManager = new OrdersCounterDBManager();
             await ordersCounterDBManager.CreateDB();
+
             DateTime date = DateTime.Now.Date;
             List<Room>? startUpRooms = await roomController.GetAllRooms();
             if (startUpRooms.Count == 0)
@@ -29,7 +32,7 @@ namespace Encapsulation
                 await roomsDBManager.AddRoom(new Room(203, RoomType.Suite));
                 await roomsDBManager.AddRoom(new Room(204, RoomType.Deluxe));
             }
-            User curentUser = null;
+            User? curentUser = null;
             while (true)
             {
                 ConsoleManager.WelcomeMessage(curentUser);
@@ -77,7 +80,7 @@ namespace Encapsulation
                         {
                             //TODO must be formed some kind of transaction when updating rooms and user
                             int roomType = ConsoleManager.RoomType();
-                            List<Room> rooms = await roomController.GetAllRoomsByRoomType(Enum.GetName(typeof(RoomType), roomType));
+                            List<Room> rooms = await roomController.GetAllAvailableRoomsForGivenRoomType(Enum.GetName(typeof(RoomType), roomType));
                             var dates = ConsoleManager.ReservedDates();
                             var counter = await ordersCounterDBManager.GetCounter();
                             curentUser.Reservations.Add(counter.CurrentOrderId);

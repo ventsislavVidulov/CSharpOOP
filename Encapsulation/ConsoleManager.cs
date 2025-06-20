@@ -97,7 +97,7 @@ namespace Encapsulation
             Console.WriteLine("Logged out");
         }
 
-        public static void WelcomeMessage(User user)
+        public static void WelcomeMessage(User? user)
         {
             if (user != null)
             {
