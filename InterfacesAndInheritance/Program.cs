@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var laptopAcer = new InventoryItem(1, 10, "Laptop from ACER", 1500.00m, "Electronics");
+            laptopAcer.DisplayDescription();
         }
     }
 }
