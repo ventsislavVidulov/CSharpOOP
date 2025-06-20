@@ -1,6 +1,6 @@
 ﻿namespace InterfacesAndInheritance.Interfaces
 {
-    internal interface IBreackable
+    internal interface IBreakable
     {
         // 3. Breakable Interface(10 points):
         // Create a Breakable interface to indicate items that can break.
