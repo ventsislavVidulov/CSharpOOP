@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var dbContext = new SRP.DBContext();
+            var book = new SRP.Book("The Great Gatsby", "F. Scott Fitzgerald");
+            dbContext.SaveToDatabase(book);
         }
     }
 }

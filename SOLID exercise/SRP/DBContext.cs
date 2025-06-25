@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SOLID_exercise.SRP
+﻿namespace SOLID_exercise.SRP
 {
     internal class DBContext
     {
+        public void SaveToDatabase(Book book)
+        {
+            Console.WriteLine($"Saving book '{book.GetBookSummary()}' to the database.");
+        }
     }
 }
