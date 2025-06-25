@@ -23,11 +23,14 @@ namespace SOLID_exercise
 
             var consoleLogger = new LogToConsole();
             var fileLogger = new LogToFile();
+            var emasilLogger = new LogToEmail();
 
             var logger = new Logger(consoleLogger);
             logger.Log("This is a log message");
             logger.LoggerService = fileLogger;
             logger.Log("This is another log message");
+            logger.LoggerService = emasilLogger;
+            logger.Log("This is a log message sent via email");
         }
     }
 }
