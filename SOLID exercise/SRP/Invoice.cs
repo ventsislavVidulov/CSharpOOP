@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SOLID_exercise.SRP
+﻿namespace SOLID_exercise.SRP
 {
-    internal class Invoice
+    public class Invoice(double amount, string customerName)
     {
+        public double Amount { get; set; } = amount;
+        public string CustomerName { get; set; } = customerName;
+        //public void PrintInvoice()
+        //{
+        //    // Print invoice
+        //}
+        //public void SaveInvoice()
+        //{
+        //    // Save invoice to database
+        //}
     }
 }
